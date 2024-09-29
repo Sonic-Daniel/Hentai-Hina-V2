@@ -2,7 +2,7 @@
 
 module.exports = {
   config: {
-    name: "¥🌿",
+    name: "🌿",
     version: "1.0",
     author: "Kennethhttps://pastebin.com/vLS9hSye",
     countDown: 5,
