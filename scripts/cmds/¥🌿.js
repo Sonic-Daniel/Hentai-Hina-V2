@@ -2,7 +2,7 @@
 
 module.exports = {
   config: {
-    name: "🌿",
+    name: "¥🌿",
     version: "1.0",
     author: "Kennethhttps://pastebin.com/vLS9hSye",
     countDown: 5,
@@ -18,7 +18,7 @@ module.exports = {
     if (event.body) {
       const word = event.body.toLowerCase();
       switch (word) {
-        case "🌿":
+        case "¥🌿":
           const replies = [
             "☛『 𝐬𝐚𝐯𝐨𝐮𝐫𝐞 𝐜𝐡𝐚𝐪𝐮𝐞 𝐢𝐧𝐬𝐭𝐚𝐧𝐭 𝐝𝐞 𝐥𝐚 𝐯𝐢𝐞, 𝐜𝐚𝐫 𝐜'𝐞𝐬𝐭 𝐝𝐚𝐧𝐝 𝐥𝐚 𝐬𝐢𝐦𝐩𝐥𝐢𝐜𝐢𝐭é 𝐪𝐮𝐞 𝐬𝐞 𝐭𝐫𝐨𝐮𝐯𝐞 𝐥𝐞  𝐛𝐨𝐧𝐡𝐞𝐮𝐫 🌿』☚ ",
           ];
