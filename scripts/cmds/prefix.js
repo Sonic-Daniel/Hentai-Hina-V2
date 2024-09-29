@@ -18,6 +18,7 @@ module.exports = {
     if (event.body && event.body.toLowerCase() === "prefix") {
       // Liste des URLs d'images
       const images = [
+        "https://i.imgur.com/e5BNAp9.jpeg",
         "https://i.ibb.co/PQQdjc8/image.jpg",
         "https://i.ibb.co/vqcfHB5/image.jpg",
         "https://i.ibb.co/j8cYhF4/image.jpg",
