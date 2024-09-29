@@ -20,19 +20,22 @@
 const { spawn } = require("child_process");
 const log = require("./logger/log.js");
 
-function startProject() {
-	const child = spawn("node", ["Goat.js"], {
-		cwd: __dirname,
-		stdio: "inherit",
-		shell: true
-	});
+// Importer le fichier keep_alive.js pour garder le bot actif
+const keep_alive = require('./keep_alive.js');
 
-	child.on("close", (code) => {
-		if (code == 2) {
-			log.info("Restarting Project...");
-			startProject();
-		}
-	});
+function startProject() {
+    const child = spawn("node", ["Goat.js"], {
+        cwd: __dirname,
+        stdio: "inherit",
+        shell: true
+    });
+
+    child.on("close", (code) => {
+        if (code == 2) {
+            log.info("Restarting Project...");
+            startProject();
+        }
+    });
 }
 
 startProject();
