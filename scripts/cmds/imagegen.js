@@ -22,7 +22,7 @@ module.exports = {
       const startTime = Date.now(); // Chronomètre pour mesurer le temps de génération
 
       // Envoyer un message d'attente avant la génération de l'image
-      message.reply(`☛°•✮•°𝐶𝛪𝐷☠𝛫𝛥𝐺𝛯𝛮𝛩°•✮•°𓀫 𝛯𝑇 𝑆𝛩𝛮 𝛩𝑅𝐺𝛥𝛮𝛪𝑆𝛥𝑇𝛪𝛩𝛮 ヅ웃『𝑆𝛨𝛥𝐷𝛩𝑊 𝐺𝛥𝑅𝐷𝛯𝛮』유ッ 𝐶𝑅éé 𝛻𝛩𝑇𝑅𝛯 𝛪𝛭𝛥𝐺𝛯⌛♻️🕙 : "${prompt}", 𝛻𝛯𝑈𝛪𝐿𝐿𝛯𝛧 𝛲𝛥𝑇𝛪𝛯𝛮𝑇𝛯𝑅💁...`);
+      message.reply(`☛𝐶𝛪𝐷☠𝛫𝛥𝐺𝛯𝛮𝛩⌛𝚻𝚪𝚫𝚰𝚻𝚵𝚳𝚵𝚴𝚻 𝚵𝚴 𝐂𝚯𝐔𝚪𝐒 𝚩𝐘 ©𝐒𝚮𝚫𝐃𝚯𝐖 𝐆𝚫𝚪𝐃𝚵𝚴♻️🕙𝐋'𝚰𝚳𝚫𝐆𝚵: "${prompt}", 𝛻𝛯𝑈𝛪𝐿𝐿𝛯𝛧 𝛲𝛥𝑇𝛪𝛯𝛮𝑇𝛯𝑅💁...`);
 
       const img = await global.utils.getStreamFromURL(url); // Obtenir l'image directement depuis l'URL
 
