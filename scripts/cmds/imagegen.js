@@ -1,5 +1,5 @@
 module.exports.config = {
-  name: "imagegen",  // Nom de la commande
+  name: "imagegen",
   version: "1.0.0",
   hasPermssion: 0,
   credits: "Shadow",
@@ -9,26 +9,33 @@ module.exports.config = {
   cooldowns: 5
 };
 
-// Fonction onStart requise pour certains bots
-module.exports.onStart = async ({ api }) => {
-  console.log("Commande imagegen démarrée avec succès !");
-};
-
 const axios = require('axios');
 
 module.exports.run = async ({ event, api, args }) => {
-  // Paramètres de la requête
-  const description = args.join(" ") || "Un paysage mystérieux";  // Utilise les arguments passés par l'utilisateur
-  const data = {
-    prompt: description,
-    size: '1024x1024'
-  };
+  const description = args.join(" ") || "Un paysage mystérieux"; // Description par défaut
+  api.sendMessage(`Génération d'une image pour : ${description}`, event.threadID);
+
+  const imageUrl = `https://ashbina.onrender.com/gen2?prompt=${encodeURIComponent(description)}`;
+  const startTime = performance.now();
 
   try {
-    // Envoi de la requête
-    const response = await axios.post('https://sandipbaruwal.onrender.com/gen.html', data);
-    api.sendMessage("Image générée avec succès!", event.threadID);
+    const img = new Image();
+    img.src = imageUrl;
+
+    img.onload = () => {
+      const endTime = performance.now();
+      const timeTaken = ((endTime - startTime) / 1000).toFixed(2);
+      api.sendMessage(`Image générée avec succès !\nURL de l'image : ${imageUrl}\nTemps pris : ${timeTaken} secondes`, event.threadID);
+      api.react(event.messageID, "👍");
+    };
+
+    img.onerror = () => {
+      api.sendMessage("Erreur lors du chargement de l'image.", event.threadID);
+      api.react(event.messageID, "❌");
+    };
+
   } catch (error) {
     api.sendMessage("Erreur lors de la génération de l'image.", event.threadID);
+    api.react(event.messageID, "❌");
   }
 };
