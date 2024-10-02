@@ -9,6 +9,11 @@ module.exports.config = {
   cooldowns: 5
 };
 
+// Fonction onStart requise pour certains bots
+module.exports.onStart = async ({ api }) => {
+  console.log("Commande imagegen démarrée avec succès !");
+};
+
 const axios = require('axios');
 
 module.exports.run = async ({ event, api, args }) => {
