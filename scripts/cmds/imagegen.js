@@ -16,26 +16,20 @@ module.exports.run = async ({ event, api, args }) => {
   api.sendMessage(`Génération d'une image pour : ${description}`, event.threadID);
 
   const imageUrl = `https://ashbina.onrender.com/gen2?prompt=${encodeURIComponent(description)}`;
-  const startTime = performance.now();
+  const startTime = Date.now(); // Démarrer le chronomètre
 
   try {
-    const img = new Image();
-    img.src = imageUrl;
-
-    img.onload = () => {
-      const endTime = performance.now();
-      const timeTaken = ((endTime - startTime) / 1000).toFixed(2);
+    const response = await axios.get(imageUrl);
+    
+    if (response.data) {
+      const timeTaken = ((Date.now() - startTime) / 1000).toFixed(2);
       api.sendMessage(`Image générée avec succès !\nURL de l'image : ${imageUrl}\nTemps pris : ${timeTaken} secondes`, event.threadID);
-      api.react(event.messageID, "👍");
-    };
-
-    img.onerror = () => {
-      api.sendMessage("Erreur lors du chargement de l'image.", event.threadID);
-      api.react(event.messageID, "❌");
-    };
-
+      api.react(event.messageID, "👍"); // Réaction succès
+    } else {
+      throw new Error("Aucune image générée.");
+    }
   } catch (error) {
     api.sendMessage("Erreur lors de la génération de l'image.", event.threadID);
-    api.react(event.messageID, "❌");
+    api.react(event.messageID, "❌"); // Réaction d'erreur
   }
 };
