@@ -15,52 +15,32 @@ module.exports = {
     }
   },
 
-  onStart: async function({ message }) {
-    const prompt = "Entrez votre prompt:";
-    const modelOptions = [
-      "DreamshaperXL10",
-      "DynavisionXL",
-      "JuggernautXL",
-      "RealismEngineSDXL",
-      "Sdxl 1.0"
-    ];
-
-    // Demander à l'utilisateur d'entrer un prompt
-    await message.reply(prompt);
-
-    // Attendre la réponse de l'utilisateur
-    const filter = response => response.author.id === message.author.id;
-    const collector = message.channel.createMessageCollector({ filter, time: 60000 });
-
-    collector.on('collect', async msg => {
-      const userInput = msg.content;
-
-      // Séparer le prompt et le modèle
-      const [inputPrompt, modelIndex] = userInput.split(';'); // Utiliser ";" pour séparer prompt et modèle
-
-      if (!inputPrompt || !modelOptions[modelIndex - 1]) {
-        await msg.reply("Format invalide! Utilisez: 'votre prompt; numéro du modèle'");
-        return;
-      }
-
-      await msg.reply(`Vous: ${inputPrompt}`);
+  onStart: async function({ args, message }) {
+    try {
+      const prompt = args.join(' ') || "Un paysage mystérieux de shadow garden"; // Description par défaut
+      const modelOptions = [
+        "DreamshaperXL10",
+        "DynavisionXL",
+        "JuggernautXL",
+        "RealismEngineSDXL",
+        "Sdxl 1.0"
+      ];
+      
+      // Choisir un modèle par défaut
+      const modelIndex = 1; 
       const model = modelOptions[modelIndex - 1];
+      const url = `https://sandipbaruwal.onrender.com/sdxxl?prompt=${encodeURIComponent(prompt)}&model=${modelIndex}`;
 
-      try {
-        const imageUrl = `https://sandipbaruwal.onrender.com/sdxxl?prompt=${encodeURIComponent(inputPrompt)}&model=${modelIndex}`;
-        await msg.reply(`Génération de l'image avec ${model}...`);
+      const startTime = Date.now(); // Chronomètre pour mesurer le temps de génération
+      message.reply(`☛𝐶𝛪𝐷☠𝛫𝛥𝐺𝛯𝛮𝛩⌛𝚻𝚪𝚫𝚰𝚻𝚵𝚳𝚵𝚴𝚻 𝚵𝚴 𝐂𝚯𝐔𝚪𝐒 𝚩𝐘 ©𝐒𝚮𝚫𝐃𝚯𝐖 𝐆𝚫𝚪𝐃𝚵𝚴♻🕙𝐋'𝚰𝚳𝚫𝐆𝚵: "${prompt}", 𝛻𝛯𝑈𝛪𝐿𝐿𝛯𝛧 𝛲𝛥𝑇𝛪𝛯𝛮𝑇𝛯𝑅💁...`);const img = await global.utils.getStreamFromURL(url); // Obtenir l'image directement depuis l'URL
 
-        // Récupérer l'image
-        const response = await axios.get(imageUrl);
-        await msg.reply(`Voici votre image: ${response.data.url}`);
-      } catch (error) {
-        console.error(error);
-        await msg.reply("Erreur lors de la génération de l'image.");
-      }
-    });
+      // Temps de génération
+      const timeTaken = ((Date.now() - startTime) / 1000).toFixed(2);
 
-    collector.on('end', collected => {
-      message.channel.send("Discussion terminée. Merci d'avoir utilisé le générateur d'images SDXL!");
-    });
+      return message.reply({ body: `𝚰𝚳𝚫𝐆𝚵 𝐆é𝚴é𝚪é𝚵 𝚫𝛁𝚵𝐂 𝐒𝐔𝐂𝐂è𝐒✨😌😁 𝚵𝚴 ${timeTaken} 𝐒𝚵𝐂𝚯𝚴𝐃𝚵𝐒 𝚸𝚫𝚪 ☛ヅ║『𝐒𝚮𝚫𝐃𝚯𝐎☠𝐆𝚫𝚪𝐃𝚵𝚴』║ッ☚.`, attachment: img });
+    } catch (error) {
+      console.error(error);
+      return message.reply("Erreur lors de la génération de l'image.");
+    }
   }
 };
