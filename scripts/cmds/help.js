@@ -72,8 +72,8 @@ module.exports = {
 
         const names = categories[category].commands.sort();
         for (let i = 0; i < names.length; i += 3) {
-          const cmds = names.slice(i, i + 3).map(item => `\n│☛⧳ ${item} ⧳☚│`);
-          msg += `│☛⧳ ${cmds.join(" ".repeat(Math.max(0, 15 - cmds.join(" ").length)))}\n⧳☚│`;
+          const cmdsJoined = cmds.join(" ");
+msg += `│☛⧳ ${cmdsJoined} ${" ".repeat(Math.max(0, 15 - cmdsJoined.length))}\n⧳☚│`;
         }
 
         msg += `╰──────❍✞❍──────╯\n`;
