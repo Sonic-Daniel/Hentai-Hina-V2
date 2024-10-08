@@ -68,7 +68,7 @@ module.exports = {
 
       Object.keys(categories).sort().forEach(category => {
         const formattedCategory = formatFont(category.toUpperCase());
-        msg += `\n╭───────────❃❃───────────╮\n〘 ${formattedCategory} 〙\n╰───────────❃❃───────────╯`;
+        msg += `\n╭───────❃❃───────╮\n〘 ${formattedCategory} 〙\n╰───────❃❃───────╯`;
 
         const names = categories[category].commands.sort();
         for (let i = 0; i < names.length; i += 3) {
@@ -76,7 +76,7 @@ module.exports = {
           msg += `│☾ ${cmds.join(" ".repeat(Math.max(0, 15 - cmds.join(" ").length)))}\n`;
         }
 
-        msg += `╰─────────────❍\n`;
+        msg += `╰───────❍✞❍───────╯\n`;
       });
 
       const totalCommands = commands.size;
