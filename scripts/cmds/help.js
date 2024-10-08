@@ -3,7 +3,7 @@ const axios = require("axios");
 const path = require("path");
 const { getPrefix } = global.utils;
 const { commands, aliases } = global.GoatBot;
-const doNotDelete = "𝐁𝟒𝐃𝟗𝐋-𝐁𝟗𝐓___//𝟎𝟎𝟕";
+const doNotDelete = "⨷𝗔𝗧𝗢𝗠𝗜𝗖⧳𝗣𝗥𝗢⨷";
 
 function formatFont(text) {
   const fontMapping = {
@@ -33,7 +33,7 @@ module.exports = {
   config: {
     name: "help",
     version: "1.18",
-    author: "MOHAMMAD-BADOL", 
+    author: "𝗰𝗶𝗱 𝗞𝗮𝗴𝗲𝗻𝗼", 
     countDown: 5,
     role: 0,
     shortDescription: {
@@ -56,7 +56,7 @@ module.exports = {
 
     if (args.length === 0) {
       const categories = {};
-      let msg = `❀━━━━━━━━━━━━━━❀\n  💙 【 𝐁𝟒𝐃𝟗𝐋-𝐁𝟗𝐓___//𝟎𝟎𝟕 】💙 \n❀━━━━━━━━━━━━━━❀\n`;
+      let msg = `┗━━✫━━━❖━━❖━━━━┛\n  💙 【♛𝗔𝗧𝗢𝗠𝗜𝗖⧳𝗖𝗠𝗗𝗦♛】💙 \n┗━━✫━━━❖━━━✮━━━┛\n`;
 
       for (const [name, value] of commands) {
         if (value.config.role > role) continue;
@@ -68,15 +68,15 @@ module.exports = {
 
       Object.keys(categories).sort().forEach(category => {
         const formattedCategory = formatFont(category.toUpperCase());
-        msg += `\n╭───────❃❃───────╮\n〘 ${formattedCategory} 〙\n╰───────❃❃───────╯`;
+        msg += `\n╭───────❃❃───────╮\n〘🎗️ ${formattedCategory}🎗️ 〙\n╰───────❃❃───────╯`;
 
         const names = categories[category].commands.sort();
         for (let i = 0; i < names.length; i += 3) {
           const cmds = names.slice(i, i + 3).map(item => `${item}`);
-          msg += `│☾ ${cmds.join(" ".repeat(Math.max(0, 15 - cmds.join(" ").length)))}\n`;
+          msg += `│☛⧳\n⧳☚│ ${cmds.join(" ".repeat(Math.max(0, 15 - cmds.join(" ").length)))}\n`;
         }
 
-        msg += `╰───────❍✞❍───────╯\n`;
+        msg += `╰──────❍✞❍──────╯\n`;
       });
 
       const totalCommands = commands.size;
