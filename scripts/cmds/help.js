@@ -69,11 +69,12 @@ module.exports = {
       Object.keys(categories).sort().forEach(category => {
         const formattedCategory = formatFont(category.toUpperCase());
         msg += `\n╭───────❃❃───────╮\n〘🎗️ ${formattedCategory}🎗️ 〙\n╰───────❃❃───────╯`;
-
-        const names = categories[category].commands.sort();
+        
+const names = categories[category].commands.sort();
         for (let i = 0; i < names.length; i += 3) {
-          const cmdsJoined = cmds.join(" ");
-msg += `│☛⧳ ${cmdsJoined} ${" ".repeat(Math.max(0, 15 - cmdsJoined.length))}\n⧳☚│`;
+          const cmds = names.slice(i, i + 3).map(item => `\n│⧳✮ ${item} ✮⧳│`);
+          msg += `│𓀫 ${cmds.join(" ".repeat(Math.max(0, 15 - cmds.join(" ").length)))} 𓀫│\n`;
+       
         }
 
         msg += `╰──────❍✞❍──────╯\n`;
