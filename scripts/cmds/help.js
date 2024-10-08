@@ -1,4 +1,4 @@
-const fs = require("fs-extra");
+ const fs = require("fs-extra");
 const axios = require("axios");
 const path = require("path");
 const { getPrefix } = global.utils;
@@ -56,7 +56,7 @@ module.exports = {
 
     if (args.length === 0) {
       const categories = {};
-      let msg = `┏━━✫━━━❖━━❖━━━━┓\n  🤍【♛𝗔𝗧𝗢𝗠𝗜𝗖⧳𝗖𝗠𝗗𝗦♛】🤍 \n┗━━✫━━━❖━━━✮━━━┛\n`;
+      let msg = `┏━━✫━━━❖━━❖━━━━┓\n  💙 【♛𝗔𝗧𝗢𝗠𝗜𝗖⧳𝗖𝗠𝗗𝗦♛】💙 \n┗━━✫━━━❖━━━✮━━━┛\n`;
 
       for (const [name, value] of commands) {
         if (value.config.role > role) continue;
@@ -69,12 +69,11 @@ module.exports = {
       Object.keys(categories).sort().forEach(category => {
         const formattedCategory = formatFont(category.toUpperCase());
         msg += `\n╭───────❃❃───────╮\n〘🎗️ ${formattedCategory}🎗️ 〙\n╰───────❃❃───────╯`;
-        
-const names = categories[category].commands.sort();
+
+        const names = categories[category].commands.sort();
         for (let i = 0; i < names.length; i += 3) {
-          const cmds = names.slice(i, i + 3).map(item => `\n│⧳✮ ${item} ✮⧳│`);
-          msg += `│𓀫 ${cmds.join(" ".repeat(Math.max(0, 15 - cmds.join(" ").length)))} 𓀫│\n`;
-       
+          const cmds = names.slice(i, i + 3).map(item => `${item}`);
+          msg += `│☛⧳ ${cmds.join(" ".repeat(Math.max(0, 15 - cmds.join(" ").length)))} ☚⧳│\n`;
         }
 
         msg += `╰──────❍✞❍──────╯\n`;
@@ -138,4 +137,4 @@ function roleTextToString(roleText) {
     case 2: return "2 (Admin bot)";
     default: return "Unknown role";
   }
-      }
+  }
